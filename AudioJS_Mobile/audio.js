@@ -13,6 +13,16 @@ function assert(condition) {
     }
 }
 
+function dump(obj) {
+    var result = "";
+    for (prop in obj) {
+        var pair = prop + "=" + obj[prop];
+        result += pair + ";";
+    }
+
+    return result;
+}
+
 function htmlplay() {
     var snd = document.querySelector("audio");
     snd.play();
@@ -33,9 +43,23 @@ function soundjsplay() {
 
     log(soundinstance.playState);
 
+    var src = "audio/M-GameBG.mp3";
+
     // Do we have an active Plugin
     var hasActivePlugin = createjs.Sound.activePlugin;
     assert(hasActivePlugin != null);
+
+    // Create an invalid SoundInstance
+    var inst3 = createjs.Sound.createInstance("invalid");
+    assert(inst3.toString() === "[Sound Default Sound Instance]");
+
+    // Create a SoundInstance
+    var instance = createjs.Sound.createInstance(src);
+    assert(instance != null);
+
+    // Check whether it is a dummy sound instance
+    assert(instance.toString() !== "[Sound Default Sound Instance]");
+
 
     //var isComplete = createjs.Sound.loadComplete("audio/M-GameBG.mp3")
     //log(isComplete);
