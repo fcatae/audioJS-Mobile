@@ -30,3 +30,10 @@ and provided another implementation for _createTag function.
     proto._createTag = function hotfixSoundJSforWP80() {
 		...
 	};
+
+
+See the [soundjsWP80.js](https://github.com/fcatae/audioJS-Mobile/blob/master/AudioJS_Mobile/soundjsWP80.js) file.
+
+##PROJECT CONTENT
+
+This is a Visual Studio 2013 project using PhoneGap and SoundJS 0.5.2.
