@@ -48,5 +48,8 @@
         return (checkWP80 && checkIE10);
     }
 
-    installHotfix();
+    // Install hotfix only if it detects Windows Phone 8.0
+    if (isWindowsPhone80()) {
+        installHotfix();
+    }
 })();
