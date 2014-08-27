@@ -18,6 +18,16 @@ function success(text) {
     document.getElementById("message").textContent = text;
 }
 
+
+function dumpprops(obj) {
+    var result = "";
+    for (prop in obj) {
+        result += prop + ";";
+    }
+
+    log(result);
+}
+
 function dump(obj) {
     var result = "";
     for (prop in obj) {
@@ -30,8 +40,11 @@ function dump(obj) {
 
 function htmlplay() {
     var snd = document.querySelector("audio");
+
     snd.play();
     log("playing HTML Audio");
+
+    assert(snd.readyState === 4); // FALSE!!!
 }
 
 function soundjsplay() {
@@ -49,6 +62,7 @@ function soundjsplay() {
     log(soundinstance.playState);
 
     var src = "audio/M-GameBG.mp3";
+
 
     // Do we have an active Plugin
     var hasActivePlugin = createjs.Sound.activePlugin;
@@ -73,7 +87,9 @@ function soundjsplay() {
     var htmlinstance = new createjs.HTMLAudioPlugin.SoundInstance(src, createjs.HTMLAudioPlugin);
     assert(htmlinstance != null);
 
-    instance.play();
+    instance.pause();
+    instance.resume();
+
 
     //var isComplete = createjs.Sound.loadComplete("audio/M-GameBG.mp3")
     //log(isComplete);

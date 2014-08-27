@@ -334,17 +334,24 @@ this.createjs = this.createjs || {};
 		tag.autoplay = false;
 		tag.preload = "none";
 
-		tag.onreadystatechange = function () {
-		    success("onreadystatechange");
-		};
-
 		//LM: Firefox fails when this the preload="none" for other tags, but it needs to be "none" to ensure PreloadJS works.
 		tag.src = src;
 
-        // Fabricio: adding this code works
-        //		tag.play();
 		return tag;
 	};
+
+	var oldCreateTag = p._createTag;
+	p._createTag = function (src) {
+
+	    var tag = oldCreateTag(src);
+
+	    tag.addEventListener("canplay", function () {
+	        Object.defineProperty(tag, "readyState", { value: 4 });
+	        success("HOTFIX");
+	    });
+
+	    return tag;
+    }
 
 	/**
 	 * Remove a sound added using {{#crossLink "HTMLAudioPlugin/register"}}{{/crossLink}}. Note this does not cancel
@@ -545,10 +552,7 @@ this.createjs = this.createjs || {};
 		this._updateVolume();  // note this will set for mute and _masterMute
 		this._remainingLoops = loop;
 
-		log("tag.readyState := " + tag.readyState);
-		log(tag);
 		
-
 		if (tag.readyState !== 4) {
 			tag.addEventListener(createjs.HTMLAudioPlugin._AUDIO_READY, this._readyHandler, false);
 			tag.addEventListener(createjs.HTMLAudioPlugin._AUDIO_STALLED, this._stalledHandler, false);
@@ -556,6 +560,11 @@ this.createjs = this.createjs || {};
 			tag.load();
 		} else {
 		    this._handleSoundReady(null);
+		}
+
+
+		if(false) {
+            this._handleSoundReady(null);
 		}
 
 		this._sendEvent("succeeded");
