@@ -101,6 +101,7 @@
     <Content Include="audio.js" />
     <Content Include="audio\M-GameBG.mp3" />
     <Content Include="audio\M-GameBG.ogg" />
+    <Content Include="soundjsWP80.js" />
     <Content Include="soundjs\createjs\events\Event.js" />
     <Content Include="soundjs\createjs\events\EventDispatcher.js" />
     <Content Include="soundjs\createjs\utils\IndexOf.js" />

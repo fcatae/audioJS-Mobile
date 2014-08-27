@@ -1,13 +1,4 @@
 ﻿function init() {
-
-    if (isWindowsPhone80()) {
-        log("WP80");
-        hotfix();
-    }
-    else {
-        log("no hotfix required");
-    }
-
     createjs.Sound.registerSound({ id: "audiobg", src: "audio/M-GameBG.mp3" });
 }
 
@@ -45,32 +36,6 @@ function dump(obj) {
     }
 
     log(result);
-}
-
-function isWindowsPhone80() {
-    var useragent = navigator.userAgent;
-    var checkWP80 = /Windows Phone 8.0/i.test(useragent.toLowerCase());
-    var checkIE10 = /MSIE 10.0/i.test(useragent.toLowerCase());
-
-    return (checkWP80 && checkIE10);
-}
-
-function hotfix() {
-
-    var p = createjs.HTMLAudioPlugin.prototype;
-    var oldCreateTag = p._createTag;
-    p._createTag = function (src) {
-
-        var tag = oldCreateTag(src);
-
-        tag.addEventListener("canplay", function () {
-            Object.defineProperty(tag, "readyState", { value: 4 });
-            success("HOTFIX");
-        });
-
-        return tag;
-    }
-
 }
 
 function htmlplay() {
