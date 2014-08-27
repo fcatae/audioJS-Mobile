@@ -1,4 +1,7 @@
 ﻿function init() {
+
+    hotfix();
+
     createjs.Sound.registerSound({ id: "audiobg", src: "audio/M-GameBG.mp3" });
 }
 
@@ -36,6 +39,24 @@ function dump(obj) {
     }
 
     log(result);
+}
+
+function hotfix() {
+
+    var p = createjs.HTMLAudioPlugin.prototype;
+    var oldCreateTag = p._createTag;
+    p._createTag = function (src) {
+
+        var tag = oldCreateTag(src);
+
+        tag.addEventListener("canplay", function () {
+            Object.defineProperty(tag, "readyState", { value: 4 });
+            success("HOTFIX");
+        });
+
+        return tag;
+    }
+
 }
 
 function htmlplay() {

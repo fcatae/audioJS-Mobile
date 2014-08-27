@@ -340,18 +340,18 @@ this.createjs = this.createjs || {};
 		return tag;
 	};
 
-	var oldCreateTag = p._createTag;
-	p._createTag = function (src) {
+	//var oldCreateTag = p._createTag;
+	//p._createTag = function (src) {
 
-	    var tag = oldCreateTag(src);
+	//    var tag = oldCreateTag(src);
 
-	    tag.addEventListener("canplay", function () {
-	        Object.defineProperty(tag, "readyState", { value: 4 });
-	        success("HOTFIX");
-	    });
+	//    tag.addEventListener("canplay", function () {
+	//        Object.defineProperty(tag, "readyState", { value: 4 });
+	//        success("HOTFIX");
+	//    });
 
-	    return tag;
-    }
+	//    return tag;
+    //}
 
 	/**
 	 * Remove a sound added using {{#crossLink "HTMLAudioPlugin/register"}}{{/crossLink}}. Note this does not cancel
