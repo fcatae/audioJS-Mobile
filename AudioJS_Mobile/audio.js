@@ -13,6 +13,11 @@ function assert(condition) {
     }
 }
 
+function success(text) {
+    document.bgColor = "green";
+    document.getElementById("message").textContent = text;
+}
+
 function dump(obj) {
     var result = "";
     for (prop in obj) {
@@ -20,7 +25,7 @@ function dump(obj) {
         result += pair + ";";
     }
 
-    return result;
+    log(result);
 }
 
 function htmlplay() {
@@ -60,6 +65,15 @@ function soundjsplay() {
     // Check whether it is a dummy sound instance
     assert(instance.toString() !== "[Sound Default Sound Instance]");
 
+    // Assume we are working with HTMLAudioPlugin
+    assert(createjs.Sound.activePlugin instanceof createjs.HTMLAudioPlugin);
+    assert(!(createjs.Sound.activePlugin instanceof createjs.WebAudioPlugin));
+
+    // Create a SoundInstance from the HTML plugin
+    var htmlinstance = new createjs.HTMLAudioPlugin.SoundInstance(src, createjs.HTMLAudioPlugin);
+    assert(htmlinstance != null);
+
+    instance.play();
 
     //var isComplete = createjs.Sound.loadComplete("audio/M-GameBG.mp3")
     //log(isComplete);
