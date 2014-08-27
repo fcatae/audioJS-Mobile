@@ -329,29 +329,13 @@ this.createjs = this.createjs || {};
 	 * @protected
 	 */
 	p._createTag = function (src) {
-
 		var tag = document.createElement("audio");
 		tag.autoplay = false;
 		tag.preload = "none";
-
 		//LM: Firefox fails when this the preload="none" for other tags, but it needs to be "none" to ensure PreloadJS works.
 		tag.src = src;
-
 		return tag;
 	};
-
-	var oldCreateTag = p._createTag;
-	p._createTag = function (src) {
-
-	    var tag = oldCreateTag(src);
-
-	    tag.addEventListener("canplay", function () {
-	        Object.defineProperty(tag, "readyState", { value: 4 });
-	        success("HOTFIX");
-	    });
-
-	    return tag;
-    }
 
 	/**
 	 * Remove a sound added using {{#crossLink "HTMLAudioPlugin/register"}}{{/crossLink}}. Note this does not cancel
@@ -389,7 +373,7 @@ this.createjs = this.createjs || {};
 			var tag = this._createTag(src);
 			tag.id = src;
 			channel.add(tag);
-			this.preload(src, { tag: tag });
+			this.preload(src, {tag:tag});
 		}
 
 		return new createjs.HTMLAudioPlugin.SoundInstance(src, this);
@@ -531,10 +515,7 @@ this.createjs = this.createjs || {};
 	};
 
 	p._beginPlaying = function (offset, loop, volume, pan) {
-
-	    // success("beginPlaying") = OK
-
-	    if (window.createjs == null) {
+		if (window.createjs == null) {
 			return -1;
 		}
 		var tag = this.tag = createjs.HTMLAudioPlugin.TagPool.getInstance(this.src);
@@ -552,19 +533,13 @@ this.createjs = this.createjs || {};
 		this._updateVolume();  // note this will set for mute and _masterMute
 		this._remainingLoops = loop;
 
-		
 		if (tag.readyState !== 4) {
 			tag.addEventListener(createjs.HTMLAudioPlugin._AUDIO_READY, this._readyHandler, false);
 			tag.addEventListener(createjs.HTMLAudioPlugin._AUDIO_STALLED, this._stalledHandler, false);
 			tag.preload = "auto"; // This is necessary for Firefox, as it won't ever "load" until this is set.
 			tag.load();
 		} else {
-		    this._handleSoundReady(null);
-		}
-
-
-		if(false) {
-            this._handleSoundReady(null);
+			this._handleSoundReady(null);
 		}
 
 		this._sendEvent("succeeded");
@@ -582,8 +557,6 @@ this.createjs = this.createjs || {};
 		if (window.createjs == null) {
 			return;
 		}
-
-		success("_handleSoundReady");
 
 		// OJR would like a cleaner way to do this in _init, discuss with LM
 		this._duration = this.tag.duration * 1000;  // need this for setPosition on stopped sounds
