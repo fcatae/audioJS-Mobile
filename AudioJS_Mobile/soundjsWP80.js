@@ -1,4 +1,4 @@
-﻿/*
+﻿/* 
  * Hotfix for soundJS and Windows Phone 8.0
  * 
  * PROBLEM: soundJS does not work on Windows Phone 8.0
