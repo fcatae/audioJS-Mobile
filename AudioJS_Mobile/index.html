@@ -7,7 +7,7 @@
     <!-- AudioJSMobile references -->
     <link href="css/index.css" rel="stylesheet" />
 </head>
-<body>
+<body onload="init()">
     <p>Hello, your application is ready!</p>
 
     <!-- Cordova reference, this is added to your app when it's built. -->
@@ -30,11 +30,15 @@
 
     <script src="scripts/index.js"></script>
 
+    <!-- Our script -->
+    <script src="audio.js"></script>
+
     <h1>Assets</h1>
     <h2>Background Music</h2>
     <audio controls="controls">
         <source src="audio/M-GameBG.mp3" type="audio/mpeg" />
     </audio>
+    <div id="status"></div>
 
 </body>
 </html>
