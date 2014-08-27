@@ -59,39 +59,4 @@ function soundjsplay() {
         log("play failed");
     });
 
-    log(soundinstance.playState);
-
-    var src = "audio/M-GameBG.mp3";
-
-
-    // Do we have an active Plugin
-    var hasActivePlugin = createjs.Sound.activePlugin;
-    assert(hasActivePlugin != null);
-
-    // Create an invalid SoundInstance
-    var inst3 = createjs.Sound.createInstance("invalid");
-    assert(inst3.toString() === "[Sound Default Sound Instance]");
-
-    // Create a SoundInstance
-    var instance = createjs.Sound.createInstance(src);
-    assert(instance != null);
-
-    // Check whether it is a dummy sound instance
-    assert(instance.toString() !== "[Sound Default Sound Instance]");
-
-    // Assume we are working with HTMLAudioPlugin
-    assert(createjs.Sound.activePlugin instanceof createjs.HTMLAudioPlugin);
-    assert(!(createjs.Sound.activePlugin instanceof createjs.WebAudioPlugin));
-
-    // Create a SoundInstance from the HTML plugin
-    var htmlinstance = new createjs.HTMLAudioPlugin.SoundInstance(src, createjs.HTMLAudioPlugin);
-    assert(htmlinstance != null);
-
-    instance.pause();
-    instance.resume();
-
-
-    //var isComplete = createjs.Sound.loadComplete("audio/M-GameBG.mp3")
-    //log(isComplete);
-
 }
