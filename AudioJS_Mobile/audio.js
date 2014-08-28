@@ -1,5 +1,5 @@
 ﻿function init() {
-    createjs.Sound.registerSound({ id: "audiobg", src: "audio/M-GameBG.mp3" });
+    createjs.Sound.registerSound({ id: "audiobg", src: "audio/Game-Spawn.mp3" });
 }
 
 function log(text) {
@@ -48,15 +48,7 @@ function htmlplay() {
 }
 
 function soundjsplay() {
-
-    createjs.Sound.addEventListener("fileload", function (evt) {
-        log("File loaded");
-    });
+        
+    var soundinstance = createjs.Sound.play("audio/Game-Spawn.mp3", {loop: -1});
     
-    var soundinstance = createjs.Sound.play("audio/M-GameBG.mp3");
-
-    soundinstance.addEventListener("failed", function () {
-        log("play failed");
-    });
-
 }
