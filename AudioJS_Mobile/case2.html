@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>AudioJSMobile</title>
+
+    <!-- AudioJSMobile references -->
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+<body onload="init()">
+    <p>Hello, your application is ready!</p>
+
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+
+    <!-- CreateJS Library -->
+    <script src="soundjs/createjs/events/Event.js"></script>
+    <script src="soundjs/createjs/events/EventDispatcher.js"></script>
+    <script src="soundjs/createjs/utils/IndexOf.js"></script>
+    <script src="soundjs/createjs/utils/Proxy.js"></script>
+
+    <!-- SoundJS Library -->
+    <script src="soundjs/soundjs/FlashPlugin.js"></script>
+    <script src="soundjs/soundjs/HTMLAudioPlugin.js"></script>
+    <script src="soundjs/soundjs/Sound.js"></script>
+    <script src="soundjs/soundjs/version.js"></script>
+    <script src="soundjs/soundjs/version_flashplugin.js"></script>
+    <script src="soundjs/soundjs/WebAudioPlugin.js"></script>
+
+    <script src="scripts/index.js"></script>
+
+    <!-- Our script -->
+    <script src="soundjsWP80.js"></script>
+    <script src="case2.js"></script>
+
+    <h1>Assets</h1>
+    <h2>Audio control</h2>
+    <audio controls="controls">
+        <source src="audio/Game-Spawn.mp3" type="audio/mpeg" />
+    </audio>
+
+    <h2>HTML Audio Tag</h2>
+    <button onclick="htmlplay()">Play</button>
+
+    <h2>SoundJS</h2>
+    <button onclick="soundjsplay()">Play</button>
+
+    <div id="status"></div>
+
+</body>
+</html>
