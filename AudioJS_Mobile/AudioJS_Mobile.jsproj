@@ -98,9 +98,11 @@
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="case1.js" />
     <Content Include="audio.js" />
     <Content Include="audio\M-GameBG.mp3" />
     <Content Include="audio\M-GameBG.ogg" />
+    <Content Include="case1.html" />
     <Content Include="soundjsWP80.js" />
     <Content Include="soundjs\createjs\events\Event.js" />
     <Content Include="soundjs\createjs\events\EventDispatcher.js" />
