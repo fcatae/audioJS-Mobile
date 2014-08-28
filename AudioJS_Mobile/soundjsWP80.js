@@ -23,8 +23,12 @@
         if (createjs && createjs.HTMLAudioPlugin && (_proxyCreateTag == null)) {
             // patch _createTag function
             var p = createjs.HTMLAudioPlugin.prototype;
-            _proxyCreateTag = p._createTag;
-            p._createTag = hotfixReadyState;
+
+            // only if it hasn't been patched
+            if (p._createTag != hotfixReadyState) {
+                _proxyCreateTag = p._createTag;
+                p._createTag = hotfixReadyState;
+            }
         }
 
     }
