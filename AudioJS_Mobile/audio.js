@@ -41,14 +41,17 @@ function dump(obj) {
 function htmlplay() {
     var snd = document.querySelector("audio");
 
-    snd.play();
-    log("playing HTML Audio");
+    // Duration is undefined
+    assert(!isNaN(snd.duration));
 
-    assert(snd.readyState === 4); // FALSE!!!
+    // Loop is broken
+    snd.loop = -1;
+
+    snd.play();
 }
 
 function soundjsplay() {
         
-    var soundinstance = createjs.Sound.play("audio/Game-Spawn.mp3", {loop: -1});
+    var soundinstance = createjs.Sound.play("audio/Game-Spawn.mp3", { loop: -1 });
     
 }
