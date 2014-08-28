@@ -1,5 +1,6 @@
 ﻿function init() {
-    createjs.Sound.registerSound({ id: "audiobg", src: "audio/Game-Spawn.mp3" });
+    createjs.HTMLAudioPlugin.MAX_INSTANCES = 1;
+    createjs.Sound.registerSound({ id: "audiobg", src: "audio/M-GameBG.mp3" });
 }
 
 function log(text) {
@@ -41,17 +42,18 @@ function dump(obj) {
 function htmlplay() {
     var snd = document.querySelector("audio");
 
-    // Duration is undefined
-    assert(!isNaN(snd.duration));
-
-    // Loop is broken
-    snd.loop = -1;
+    snd.currentTime = 0;
 
     snd.play();
 }
 
+var soundinstance = null;
 function soundjsplay() {
         
-    var soundinstance = createjs.Sound.play("audio/Game-Spawn.mp3", { loop: -1 });
+    //if (soundinstance != null) {
+    //    soundinstance.stop();
+    //}
+    createjs.Sound.stop();
+    var soundinstance = createjs.Sound.play("audiobg", "any", 0, 1);
     
 }
