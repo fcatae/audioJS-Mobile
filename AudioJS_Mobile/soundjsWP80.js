@@ -39,7 +39,6 @@
         // attach to canplay Event: change the readyState
         tag.addEventListener("canplay", function () {
             Object.defineProperty(tag, "readyState", { value: 4 });
-            Object.defineProperty(tag, "duration", { value: 1000 });
         });
 
         return tag;
