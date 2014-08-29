@@ -106,6 +106,7 @@
     <Content Include="audio\M-GameBG.ogg" />
     <Content Include="case1.html" />
     <Content Include="case2.html" />
+    <Content Include="soundjsNEXT\soundjs-NEXT.min.js" />
     <Content Include="soundjsWP80.js" />
     <Content Include="soundjs\createjs\events\Event.js" />
     <Content Include="soundjs\createjs\events\EventDispatcher.js" />
