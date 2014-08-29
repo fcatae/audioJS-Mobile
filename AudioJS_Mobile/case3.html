@@ -8,36 +8,38 @@
     <link href="css/index.css" rel="stylesheet" />
 </head>
 <body onload="init()">
-    <p>HTML Audio element does not finish loading. As a consequence, 1) duration is not set; 2) events are not dispatched </p>
+    <p>Hello, your application is ready!</p>
 
     <!-- Cordova reference, this is added to your app when it's built. -->
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
 
     <!-- CreateJS Library -->
-    <script src="soundjs/createjs/events/Event.js"></script>
+    <!--<script src="soundjs/createjs/events/Event.js"></script>
     <script src="soundjs/createjs/events/EventDispatcher.js"></script>
     <script src="soundjs/createjs/utils/IndexOf.js"></script>
-    <script src="soundjs/createjs/utils/Proxy.js"></script>
+    <script src="soundjs/createjs/utils/Proxy.js"></script>-->
 
     <!-- SoundJS Library -->
-    <script src="soundjs/soundjs/FlashPlugin.js"></script>
+    <!--<script src="soundjs/soundjs/FlashPlugin.js"></script>
     <script src="soundjs/soundjs/HTMLAudioPlugin.js"></script>
     <script src="soundjs/soundjs/Sound.js"></script>
     <script src="soundjs/soundjs/version.js"></script>
     <script src="soundjs/soundjs/version_flashplugin.js"></script>
-    <script src="soundjs/soundjs/WebAudioPlugin.js"></script>
+    <script src="soundjs/soundjs/WebAudioPlugin.js"></script>-->
+
+    <script src="soundjsNEXT/soundjs-NEXT.combined.js"></script>
 
     <script src="scripts/index.js"></script>
 
     <!-- Our script -->
     <script src="soundjsWP80.js"></script>
-    <script src="case2.js"></script>
+    <script src="case3.js"></script>
 
     <h1>Assets</h1>
     <h2>Audio control</h2>
-    <audio controls="controls">
-        <source src="audio/Game-Spawn.mp3" type="audio/mpeg" />
+    <audio id="aud1" controls="controls">
+        <source src="audio/M-GameBG.mp3" type="audio/mpeg" />
     </audio>
 
     <h2>HTML Audio Tag</h2>
