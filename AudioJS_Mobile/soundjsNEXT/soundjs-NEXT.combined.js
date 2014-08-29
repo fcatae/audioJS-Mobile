@@ -4275,7 +4275,7 @@ this.createjs = this.createjs || {};
 	p._createTag = function (src) {
 		var tag = document.createElement("audio");
 		tag.autoplay = false;
-		tag.preload = "none";
+		tag.preload = "auto";
 		//LM: Firefox fails when this the preload="none" for other tags, but it needs to be "none" to ensure PreloadJS works.
 		tag.src = src;
 		return tag;
@@ -4444,7 +4444,7 @@ this.createjs = this.createjs || {};
 				tag.currentTime = this._startTime;
 			} catch (e) {
 			} // Reset Position
-			createjs.HTMLAudioPlugin.TagPool.setInstance(this.src, tag);
+			//createjs.HTMLAudioPlugin.TagPool.setInstance(this.src, tag);
 			this.tag = null;
 		}
 
@@ -4525,35 +4525,44 @@ this.createjs = this.createjs || {};
 			}
 		}
 
-		var oldtag = this.tag;
 		var that = this;
-		log("almost playing");
-		var err;
+		that.tag.preload = "auto";
+		that.tag.currentTime = 12;
+		that.tag.play();
+		that.tag.currentTime = 12;
+		log("play() - start: " + that._startTime + ", offset: " + that._offset + " current time: " + that.tag.currentTime + ", dur = " + that.getDuration());
 
-		setTimeout(function () {
+		//var oldtag = this.tag;
+		//var that = this;
+		//log("almost playing");
+		//var err;
 
-		    log("now playing");
-		    //that.tag.currentTime = 0;
+		//setTimeout(function () {
+		//    that.tag.play();
+		//    that.tag.pause();
+		//    that.tag.currentTime = (that._startTime + that._offset) * 0.001;
+		//    log("now playing");
+		//    //that.tag.currentTime = 0;
 
-		    try {
-		        log("now playing ee");
-		        that.tag.play();
-		        //var soundinstance = createjs.Sound.play("audiobg", { startTime: 1000, duration: 100000 }, 0, 1);
-		    }
-		    catch (ee) {
-		        err = ee;
-		    }
+		//    try {
+		//        log("now playing ee");
+		//        that.tag.play();
+		//        //var soundinstance = createjs.Sound.play("audiobg", { startTime: 1000, duration: 100000 }, 0, 1);
+		//    }
+		//    catch (ee) {
+		//        err = ee;
+		//    }
 
-		    if (err != null) {
-		        log(err + " -- it was: " + oldtag);
-		    }
-		    else {
-		        log("now playing 2");
-		        log("play() - start: " + that._startTime + ", offset: " + that._offset + " current time: " + that.tag.currentTime + ", dur = " + that.getDuration());
-		    }
+		//    if (err != null) {
+		//        log(err + " -- it was: " + oldtag);
+		//    }
+		//    else {
+		//        log("now playing 2");
+		//        log("play() - start: " + that._startTime + ", offset: " + that._offset + " current time: " + that.tag.currentTime + ", dur = " + that.getDuration());
+		//    }
 
-		}, 1000);
-		log("scheduled playing");
+		//}, 1000);
+		//log("scheduled playing");
 	};
 
 	p.pause = function () {
