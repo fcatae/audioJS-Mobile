@@ -40,9 +40,7 @@
         tag.addEventListener("canplay", function () {
             Object.defineProperty(tag, "readyState", { value: 4 });
         });
-
-        tag.preload = "auto";
-
+        
         return tag;
     }
 
