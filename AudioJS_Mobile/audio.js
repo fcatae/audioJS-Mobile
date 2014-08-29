@@ -1,6 +1,17 @@
 ﻿function init() {
-    createjs.HTMLAudioPlugin.MAX_INSTANCES = 1;
+    //createjs.HTMLAudioPlugin.MAX_INSTANCES = 1;
     createjs.Sound.registerSound({ id: "audiobg", src: "audio/M-GameBG.mp3" });
+
+    //createjs.Sound.registerSound({
+    //        src: "audio/M-GameBG.mp3",
+    //        data: {
+    //            audioSprite: [
+    //                { id: "audiobg", startTime: 0, duration: 10000 },
+    //                { id: "audiobg2", startTime: 12000, duration: 1000 },
+    //                { id: "audiobg3", startTime: 15000, duration: 5000 },
+    //            ]
+    //        }
+    //});
 }
 
 function log(text) {
@@ -50,15 +61,16 @@ function htmlplay() {
 var soundinstance = null;
 function soundjsplay() {
         
-    if (soundinstance != null) {
-        soundinstance.stop();
-    }
-    createjs.Sound.stop();
+    //if (soundinstance != null) {
+    //    soundinstance.stop();
+    //}
+    //createjs.Sound.stop();
     
-    var soundinstance = createjs.Sound.play("audiobg", null, 0, 1);
-
-    log(soundinstance);
-    soundinstance.play();
+    log("OI");
+    var soundinstance = createjs.Sound.play("audiobg", { startTime: 1000, duration: 400 });
+    log(soundinstance.getDuration());
+    //log(soundinstance);
+    //soundinstance.play();
 
     // bug 1: duration = NaN
     // bug 2: offset = 0 nao funciona
