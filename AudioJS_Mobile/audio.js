@@ -42,7 +42,7 @@ function dump(obj) {
 function htmlplay() {
     var snd = document.querySelector("audio");
 
-    snd.currentTime = 0;
+    snd.currentTime = 0.001;
 
     snd.play();
 }
@@ -50,10 +50,16 @@ function htmlplay() {
 var soundinstance = null;
 function soundjsplay() {
         
-    //if (soundinstance != null) {
-    //    soundinstance.stop();
-    //}
+    if (soundinstance != null) {
+        soundinstance.stop();
+    }
     createjs.Sound.stop();
-    var soundinstance = createjs.Sound.play("audiobg", "any", 0, 1);
     
+    var soundinstance = createjs.Sound.play("audiobg", null, 0, 1);
+
+    log(soundinstance);
+    soundinstance.play();
+
+    // bug 1: duration = NaN
+    // bug 2: offset = 0 nao funciona
 }

@@ -565,12 +565,17 @@ this.createjs = this.createjs || {};
 		this._paused = false;
 		this.tag.removeEventListener(createjs.HTMLAudioPlugin._AUDIO_READY, this._readyHandler, false);
 
+		log("offset = " + this._offset);
 		if (this._offset >= this.getDuration()) {
-			this.playFailed();  // OJR: throw error?
+		    log("where?");
+		    this.playFailed();  // OJR: throw error?
+		    assert(false);
 			return;
 		} else if (this._offset > 0) {
-			this.tag.currentTime = this._offset * 0.001;
+		    log("am i?");
+		    this.tag.currentTime = this._offset * 0.001;
 		}
+
 		if (this._remainingLoops == -1) {
 			this.tag.loop = true;
 		}
@@ -578,6 +583,7 @@ this.createjs = this.createjs || {};
 			this.tag.addEventListener(createjs.HTMLAudioPlugin._AUDIO_SEEKED, this.loopHandler, false);
 			this.tag.loop = true;
 		}
+		log("ready to play");
 		this.tag.play();
 	};
 
