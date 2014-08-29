@@ -4584,11 +4584,11 @@ this.createjs = this.createjs || {};
 
 	p.stop = function () {
 	    this._offset = 0;
-	    //if (this.tag) {
-	    //    this.tag.currentTime = 1000 * this._startTime || 0; // FIXED THE TIMING ISSUE
-	    //    log("stop: " + this.tag.currentTime + ", start: " + this._startTime);
-	    //}
-	    //else { log("stop"); }
+	    if (this.tag) {
+	        this.tag.currentTime = 1000 * this._startTime || 0; // FIXED THE TIMING ISSUE
+	        log("stop: " + this.tag.currentTime + ", start: " + this._startTime);
+	    }
+	    else { log("stop"); }
 
 		this.pause();
 		this.playState = createjs.Sound.PLAY_FINISHED;
