@@ -4525,7 +4525,35 @@ this.createjs = this.createjs || {};
 			}
 		}
 
-		this.tag.play();
+		var oldtag = this.tag;
+		var that = this;
+		log("almost playing");
+		var err;
+
+		setTimeout(function () {
+
+		    log("now playing");
+		    //that.tag.currentTime = 0;
+
+		    try {
+		        log("now playing ee");
+		        that.tag.play();
+		        //var soundinstance = createjs.Sound.play("audiobg", { startTime: 1000, duration: 100000 }, 0, 1);
+		    }
+		    catch (ee) {
+		        err = ee;
+		    }
+
+		    if (err != null) {
+		        log(err + " -- it was: " + oldtag);
+		    }
+		    else {
+		        log("now playing 2");
+		        log("play() - start: " + that._startTime + ", offset: " + that._offset + " current time: " + that.tag.currentTime + ", dur = " + that.getDuration());
+		    }
+
+		}, 1000);
+		log("scheduled playing");
 	};
 
 	p.pause = function () {
@@ -4546,7 +4574,13 @@ this.createjs = this.createjs || {};
 	};
 
 	p.stop = function () {
-		this._offset = 0;
+	    this._offset = 0;
+	    if (this.tag) {
+	        this.tag.currentTime = 1000 * this._startTime || 0; // FIXED THE TIMING ISSUE
+	        log("stop: " + this.tag.currentTime + ", start: " + this._startTime);
+	    }
+	    else { log("stop"); }
+
 		this.pause();
 		this.playState = createjs.Sound.PLAY_FINISHED;
 		this._cleanUp();
